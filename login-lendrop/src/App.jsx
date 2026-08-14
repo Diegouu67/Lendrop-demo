@@ -4,8 +4,7 @@ import "./App.css";
 /**
  * Lendrop — Access screen (Login / Create account)
  * -----------------------------------------------------
- * This component does NOT have backend logic yet.
- * The next step will be connecting handleSubmit to Supabase
+ * Aún hay que agregar la logica,en la parte de abajo se especifica de que manera y dodne
  * (supabase.auth.signInWithPassword / supabase.auth.signUp).
  */
 export default function App() {
@@ -32,7 +31,9 @@ export default function App() {
   const switchMode = () => {
     setMode((m) => (m === "login" ? "signup" : "login"));
   };
+//IA para el backend
 
+//acá empieza el codifo de diseño
   return (
     <>
       
