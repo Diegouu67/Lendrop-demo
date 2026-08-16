@@ -1,122 +1,163 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const lockers = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
+
+export default function App() {
+  const [selectedLocker, setSelectedLocker] = useState(null);
+
+  const handleReserve = () => {
+    if (!selectedLocker) {
+      alert("Selecciona un casillero antes de reservar.");
+      return;
+    }
+
+    alert(`Has seleccionado el casillero ${selectedLocker}.`);
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="page">
+      <header className="topbar">
+
+        {/* LOGO DE LENDROP */}
+        <a href="#" className="brand">
+          <img
+            src="/logo-lendrop.png"
+            alt="Lendrop"
+            className="logoImage"
+          />
+        </a>
+
+        <nav className="nav">
+          <a href="#">Cómo funciona</a>
+          <a href="#">Categorías</a>
+          <a href="#">Seguridad</a>
+        </nav>
+
+        <div className="actions">
+          <button className="linkButton">Iniciar sesión</button>
+          <button className="btn">Empezar</button>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+      </header>
+
+      <main className="hero">
+        <div className="heroLeft">
+
+          <div className="kicker">
+            RED DE CASILLEROS INTELIGENTES · EL SALVADOR
+          </div>
+
+          <h1>
+            Alquila lo que
+            <br />
+            necesitas.
+            <br />
+            <span className="gradText">Sin coordinar con</span>
+            <br />
+            nadie.
+          </h1>
+
+          <p className="desc">
+            Cámaras, herramientas, drones, bicicletas y mucho más. Reserva,
+            paga y retira tus artículos en un locker inteligente cerca de ti.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+          <div className="ctaRow">
+            <button className="btn btnPrimary">
+              Explorar artículos
+              <span>→</span>
+            </button>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <button className="btn btnGhost">
+              Cómo funciona
+            </button>
+          </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          <div className="heroStats">
+            <div className="stat">
+              <strong>24/7</strong>
+              <span>Acceso</span>
+            </div>
+
+            <div className="stat">
+              <strong>100%</strong>
+              <span>Seguro</span>
+            </div>
+
+            <div className="stat">
+              <strong>+50</strong>
+              <span>Artículos</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="heroRight">
+          <div className="terminalGlow"></div>
+
+          <div className="terminalCard">
+
+            <div className="terminalTop">
+              <div>
+                <span className="statusDot"></span>
+                <span className="onlineText">ONLINE</span>
+              </div>
+
+              <span className="terminalId">LD-14</span>
+            </div>
+
+            <div className="terminalTitle">
+              TERMINAL LD-14
+              <span>San Salvador Centro</span>
+            </div>
+
+            <div className="grid">
+              {lockers.map((locker) => (
+                <button
+                  key={locker}
+                  className={`slot ${
+                    selectedLocker === locker ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedLocker(locker)}
+                >
+                  <div className="slotNumber">{locker}</div>
+
+                  <span className="slotStatus">
+                    {selectedLocker === locker
+                      ? "SELECCIONADO"
+                      : "DISPONIBLE"}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <div className="terminalFooter">
+
+              <div className="selection">
+                {selectedLocker ? (
+                  <>
+                    <span>Casillero</span>
+                    <strong>{selectedLocker}</strong>
+                  </>
+                ) : (
+                  <>
+                    <span>Selecciona</span>
+                    <strong>un casillero</strong>
+                  </>
+                )}
+              </div>
+
+              <button
+                className="btn btnSlot"
+                onClick={handleReserve}
+              >
+                Reservar
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
-
-export default App
