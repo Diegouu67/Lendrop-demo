@@ -27,9 +27,11 @@ export default function App() {
 
 const [session, setSession] = useState(null);
 const [authLoading, setAuthLoading] = useState(true);
-
+  // --- Session state ---------------------------------------------------
+  const [session, setSession] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
   useEffect(() => {
-    
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setAuthLoading(false);
@@ -85,7 +87,6 @@ const [authLoading, setAuthLoading] = useState(true);
         setStatusMsg({ type: "error", text: error.message });
       }
       
-
     } else if (mode === "forgot") {
       const { error } = await supabase.auth.resetPasswordForEmail(form.email, {
         redirectTo: window.location.origin,
@@ -131,10 +132,10 @@ const [authLoading, setAuthLoading] = useState(true);
           </div>
 
           {authLoading ? (
-            
+
             <p className="ld-loading">Loading...</p>
           ) : session ? (
-            
+
             <div>
               <p className="ld-welcome">Logged in as</p>
               <p className="ld-user-email">{session.user.email}</p>
@@ -148,7 +149,7 @@ const [authLoading, setAuthLoading] = useState(true);
               </button>
             </div>
           ) : mode === "forgot" ? (
-            
+
             <>
               <p className="ld-forgot-heading">Reset your password</p>
               <p className="ld-forgot-copy">Enter your email and we'll send you a reset link.</p>

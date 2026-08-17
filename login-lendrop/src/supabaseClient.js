@@ -1,7 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
- 
-const supabaseUrl = console.log(import.meta.env.VITE_SUPABASE_URL);
-const supabaseKey = console.log(import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY);
- 
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+
+console.log("ENV CHECK:", supabaseUrl, supabaseKey);
+
 export const supabase = createClient(supabaseUrl, supabaseKey);
- 
