@@ -2,12 +2,21 @@ import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import "./App.css";
 
-
+/**
+ * Lendrop — Auth screen (Login / Sign up / Forgot password)
+ * -----------------------------------------------------------
+ * Connected to Supabase Auth:
+ *  - signUp()               -> creates the user (DB trigger copies it into "profiles")
+ *  - signInWithPassword()   -> logs the user in
+ *  - resetPasswordForEmail()-> sends a password reset link
+ *  - getSession() + onAuthStateChange() -> keeps the UI in sync with the real session
+ *  - signOut()               -> logs the user out
+ */
 export default function App() {
-  const [mode, setMode] = useState("login"); 
+  const [mode, setMode] = useState("login"); // "login" | "signup" | "forgot"
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [statusMsg, setStatusMsg] = useState({ type: "", text: "" }); 
+  const [statusMsg, setStatusMsg] = useState({ type: "", text: "" }); // type: "error" | "success"
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,18 +24,20 @@ export default function App() {
     confirmPassword: "",
   });
 
-  
+  // --- Session state ---------------------------------------------------
   const [session, setSession] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true); // true while we check if there's already a session
 
   useEffect(() => {
-    
+    // 1. On first load, ask Supabase if there's already a logged-in session
+    //    (it's stored in the browser, so a page refresh doesn't log you out).
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setAuthLoading(false);
     });
 
-
+    // 2. Keep listening: this fires automatically after signUp, signInWithPassword,
+    //    signOut, etc., so "session" always reflects the real auth state.
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
@@ -71,8 +82,8 @@ export default function App() {
       if (error) {
         setStatusMsg({ type: "error", text: error.message });
       }
-      
-
+      // No need to set a success message here: onAuthStateChange updates
+      // "session" and the UI switches to the logged-in view automatically.
     } else if (mode === "forgot") {
       const { error } = await supabase.auth.resetPasswordForEmail(form.email, {
         redirectTo: window.location.origin,
@@ -118,10 +129,10 @@ export default function App() {
           </div>
 
           {authLoading ? (
-            
+            // Still checking if there's a session saved in the browser
             <p className="ld-loading">Loading...</p>
           ) : session ? (
-            
+            // --- LOGGED IN VIEW -------------------------------------
             <div>
               <p className="ld-welcome">Logged in as</p>
               <p className="ld-user-email">{session.user.email}</p>
@@ -135,7 +146,7 @@ export default function App() {
               </button>
             </div>
           ) : mode === "forgot" ? (
-            
+            // --- FORGOT PASSWORD VIEW --------------------------------
             <>
               <p className="ld-forgot-heading">Reset your password</p>
               <p className="ld-forgot-copy">Enter your email and we'll send you a reset link.</p>
@@ -171,7 +182,7 @@ export default function App() {
               </p>
             </>
           ) : (
-
+            // --- LOGIN / SIGN UP VIEW --------------------------------
             <>
               <div className="ld-tabs" data-mode={mode}>
                 <div className="ld-tab-indicator" />
