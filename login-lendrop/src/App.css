@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+/* reinicio general */
+
+.ld-page * {
+  box-sizing: border-box;
+}
+
+.ld-page {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #d9ccf7;
+
+  /* Imagen de fondo */
+  background-image: url('/img/lendrop-background.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+    font-family: 'Manrope', sans-serif;
+}
+
+
+/* principal */
+
+.ld-card {
+  width: 100%;
+  max-width: 400px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 40px 32px 32px;
+  box-shadow: 0 24px 60px rgba(13,13,13,0.09), 0 2px 8px rgba(13,13,13,0.04);
+  border: 1px solid rgba(13,13,13,0.05);
+}
+
+.ld-brand {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.ld-logo {
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-weight: 700;
+  font-size: 24px;
+
+  color: #FFFFFF;
+
+  letter-spacing: -0.03em;
+}
+
+
+/* Links */
+
+.ld-nav-links {
+  display: flex;
+  align-items: center;
+
+  gap: 70px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #FFFFFF;
+}
+
+.ld-nav-links span {
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.ld-nav-links span:hover {
+  opacity: 0.75;
+}
+
+
+/* titulo */
+
+.ld-title {
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #331A6B;
+
+  text-align: center;
+
+  margin: 28px 0 16px;
+}
+
+.ld-tab.is-active {
+  color: #FFFFFF;
+}
+
+.ld-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ld-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ld-label {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  color: #331A6B;
+}
+
+
+/* inputs  */
+
+.ld-input {
+  width: 100%;
+
+  padding: 10px 13px;
+
+  border-radius: 10px;
+
+  border: 1px solid #c9bee7;
+
+  font-size: 12px;
+
+  font-family: 'Manrope', sans-serif;
+
+  color: #331A6B;
+
+  background: #FFFFFF;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* help text */
+
+.ld-input::placeholder {
+  color: #B7B0C9;
+}
+
+.ld-input:focus {
+  border-color: #7052b7;
+
+  box-shadow:
+    0 0 0 3px rgba(112, 82, 183, 0.12);
+}
+
+
+/* password*/
+
+.ld-password-wrap {
+  position: relative;
+}
+
+.ld-eye {
+  position: absolute;
+
+  right: 12px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  color: #331A6B;
+
+  cursor: pointer;
+
+  font-family: 'Manrope', sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.ld-eye:hover {
+  color: #5b3b9b;
+}
+
+
+/* terms*/
+
+.ld-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.ld-link {
+  border: none;
+  background: transparent;
+  color: #433075;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.ld-terms input[type="checkbox"] {
+  accent-color: #331A6B;
+
+  width: 14px;
+  height: 14px;
+}
+
+.ld-terms span {
+  text-decoration: underline;
+}
+
+
+/* create account */
+
+.ld-submit {
+  width: 100%;
+
+  margin-top: 8px;
+
+  padding: 11px 0;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #331A6B;
+
+  color: #FFFFFF;
+
+  font-family: 'Manrope', sans-serif;
+
+  font-weight: 700;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.ld-submit:hover {
+  background: #52408c;
+}
+
+.ld-submit:active {
+  transform: scale(0.99);
+}
+
+.ld-switch {
+  text-align: center;
+  margin: 22px 0 0;
+  font-size: 13px;
+  color: #6E6580;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ld-tab-indicator,
+  .ld-submit {
+    transition: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .ld-card {
+    padding: 32px 22px 26px;
+  }
+}
