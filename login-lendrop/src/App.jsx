@@ -2,32 +2,18 @@ import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import "./App.css";
 
+
 export default function App() {
-  const [mode, setMode] = useState("login");
+  const [mode, setMode] = useState("login"); 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [statusMsg, setStatusMsg] = useState({ type: "", text: "" });
-
+  const [statusMsg, setStatusMsg] = useState({ type: "", text: "" }); 
   const [form, setForm] = useState({
     name: "",
     email: "",
-    telefono: "",
     password: "",
     confirmPassword: "",
-    identidad: "",
   });
-  const [form, setForm] = useState({
-  name: "",
-  email: "",
-  telefono: "",
-  password: "",
-  confirmPassword: "",
-  identidad: "",
-});
-
-const [session, setSession] = useState(null);
-const [authLoading, setAuthLoading] = useState(true);
-  // --- Session state ---------------------------------------------------
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   useEffect(() => {
@@ -47,11 +33,7 @@ const [authLoading, setAuthLoading] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -304,152 +286,6 @@ const [authLoading, setAuthLoading] = useState(true);
             </>
           )}
         </div>
-      </div>
-  );
-}
-
-    // Solo frontend por ahora.
-    console.log("Create account with:", form);
-
-  return (
-    <div className="ld-page">
-      <div className="ld-card">
-
-        {/* Navigation */}
-        <nav className="ld-navbar">
-          <span className="ld-logo">Lendrop</span>
-
-          <div className="ld-nav-links">
-            <span>Help</span>
-            <span>Contact</span>
-            <span>Language</span>
-          </div>
-        </nav>
-
-        {/* Main title */}
-        <h1 className="ld-title">Start using Lendrop!</h1>
-
-        {/* Registration form */}
-        <form className="ld-form" onSubmit={handleSubmit}>
-
-          {/* Personal information */}
-          <h2 className="ld-section-title">
-            Personal information
-          </h2>
-
-          <div className="ld-field">
-            <label className="ld-label" htmlFor="nombre">
-              Full name
-            </label>
-
-            <input
-              id="nombre"
-              name="nombre"
-              type="text"
-              className="ld-input"
-              placeholder="Your name"
-              value={form.nombre}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="ld-field">
-            <label className="ld-label" htmlFor="telefono">
-              Phone number
-            </label>
-
-            <input
-              id="telefono"
-              name="telefono"
-              type="tel"
-              className="ld-input"
-              placeholder="Your phone number"
-              value={form.telefono}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="ld-field">
-            <label className="ld-label" htmlFor="email">
-              Email address
-            </label>
-
-            <input
-              id="email"
-              name="email"
-              type="email"
-              className="ld-input"
-              placeholder="youremail@example.com"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Security */}
-          <h2 className="ld-section-title">
-            Security
-          </h2>
-
-          <div className="ld-field">
-            <label className="ld-label" htmlFor="password">
-              Password
-            </label>
-
-            <div className="ld-password-wrap">
-              <input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                className="ld-input"
-                style={{ paddingRight: 48 }}
-                placeholder="••••••••"
-                value={form.password}
-                onChange={handleChange}
-                minLength={6}
-                required
-              />
-
-              <button
-                type="button"
-                className="ld-eye"
-                onClick={() => setShowPassword((s) => !s)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
-            </div>
-          </div>
-
-          {/* Identity verification */}
-          <h2 className="ld-section-title">
-            Identity verification
-          </h2>
-
-          <div className="ld-field">
-            <label className="ld-label" htmlFor="identidad">
-              DUI / Passport number
-            </label>
-
-            <input
-              id="identidad"
-              name="identidad"
-              type="text"
-              className="ld-input"
-              placeholder="DUI / Passport number"
-              value={form.identidad}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Submit */}
-          <button type="submit" className="ld-submit">
-            Create account
-          </button>
-
-        </form>
-      </div>
     </div>
   );
+}
